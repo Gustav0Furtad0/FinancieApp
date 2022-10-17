@@ -14,6 +14,7 @@ public class acao {
     }
 
     public String toString() {
-        return this.nome;
+        String str = this.nome + ", " + this.valorCompra + ", " + this.dataCompra;
+        return str;
     }
 }

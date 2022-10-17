@@ -17,29 +17,38 @@ import ReadCSV.GetCSV;
  */
 
 public class App{
-    // private static Scanner teclado;
+    private static Scanner teclado;
 
-    public static void main(String[] args) throws IOException{
-        // List<String[]> lista = GetCSV.read("https://static.quandl.com/coverage/WIKI_PRICES.csv"); // lista.get(ler)[0]
-        //int i = 0;
-        //teclado = new Scanner(System.in);
-
-        // String s;
-        // do {
-        //     for (int ler = i; ler < i+10; ler ++) {
-        //         System.out.println();
-        //     }
-        //     System.out.println("\n\nQuer ler mais 10 nomes?");
-        //     s = teclado.nextLine();
-        //     if (!s.equals("N"))
-        //         i+=10;
-        // } while (!s.equals("N"));
+    public static void main(String[] args) throws IOException{]
+        teclado = new Scanner(System.in);
+        List<String[]> lista = GetCSV.read("https://static.quandl.com/coverage/WIKI_PRICES.csv"); // lista.get(ler)[0]
         
-        User Gustavo = new User("Gustavo");
+        System.out.println("Bem vindo ao sistema de compra de acoes");
+        System.out.println("Digite seu nome para fazer seu cadastro: ");
+        User pessoa = new User(teclado.nextLine());
+        System.out.println("Bem vindo ao sistema " + pessoa.username() + "!\n\n\n");
 
-        LocalDate agora = LocalDate.now(); // Create a date object
+        System.out.println("Escolha uma ação para comprar... [> próximas, < anteriores, N sair, <number> numero da acao]");
 
-        Gustavo.compraAcao("INTL", 20.50, agora);
+        String s;
+        int i = 0;
+        Double acao;
+        do {
+            for (int ler = i; ler < i+10; ler ++) {
+                System.out.println(lista.get(i));
+            }
+            System.out.println("\n\nQuer ler mais 10 nomes?");
+            s = teclado.nextLine();
+            if (s.equals(">"))
+                i+=10;
+            else if (s.equals(">"))
+                i-=10;
+            else if (s != null && s.matches("[0-9.]+")) {
+                acao = Double.parseDouble(s);
+                LocalDate agora = LocalDate.now();
+                pessoa.compraAcao(lista.get(acao)[0], 20, agora);
+            }
+        } while (!s.equals("N"));
 
-    } 
+    }
 }

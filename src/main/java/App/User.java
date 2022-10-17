@@ -19,6 +19,12 @@ public class User {
     }
 
     public void acoesConta(){
-        System.out.println(this.actions);
+        for(int i = 0; i < this.actions.size(); i++) {
+            System.out.println(this.actions.get(i));
+        }
+    }
+
+    public String username() {
+        return this.username;
     }
 }
