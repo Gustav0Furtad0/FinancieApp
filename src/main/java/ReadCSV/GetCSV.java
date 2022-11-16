@@ -9,7 +9,7 @@ import java.util.List;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
-public class GetCSV {
+public class GetCSV {  
     public static List<String[]> read(String link) throws IOException {
         String st = link; // "https://static.quandl.com/coverage/WIKI_PRICES.csv"
         URL stockURL = new URL(st);

@@ -1,0 +1,3 @@
+username = Gustavo
+money = 100
+actions = null

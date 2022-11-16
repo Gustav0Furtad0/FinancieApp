@@ -49,6 +49,12 @@ public class User {
         System.out.println("O valor de acoes que detém é R$" + valorAcoes + "." );
     }
 
+    public void exibirCarteira(){
+        System.out.println("Carteira de " + this.username() + "\n");
+        this.acoesConta();
+        System.out.println("O saldo em dinheiro atual é : " + this.saldoConta() + "\n\n");
+    }
+
     public String moedaConta() {
         return this.moeda;
     }
@@ -77,11 +83,12 @@ public class User {
                 esse = this.actions.get(i).getNome();
                 frente = this.actions.get(i+1).getNome();
                 System.out.println("Comparando " + esse + " " + frente);
-                System.out.println("É oq? : " + esse + " " + (charMaior(esse, frente) == 0 ? "é maior" : "é menor"));
+                System.out.println("É oq? : " + esse + " " + (charMaior(esse, frente)));
                 if(charMaior(esse, frente) == 0) {
                     acao auxiliar = this.actions.get(i);
                     this.actions.set(i, this.actions.get(i+1));
                     this.actions.set(i+1, auxiliar);
+                    System.out.println("");
                     break;
                 }
                 ordem = true;
@@ -94,7 +101,6 @@ public class User {
         if (a.length() == b.length()){
 
             for(int i = 0; i < a.length(); i++) {
-                System.out.println("Para " + a.charAt(i) + " ou " + b.charAt(i));
                 if(a.charAt(i) > b.charAt(i)) return 0;
                 else if(a.charAt(i) < b.charAt(i)) return 1;
             }
@@ -103,7 +109,6 @@ public class User {
         } else if (a.length() < b.length()){
 
             for(int i = 0; i < a.length(); i++) {   
-                System.out.println("Para " + a.charAt(i) + " ou " + b.charAt(i));
                 if(a.charAt(i) > b.charAt(i)) return 0;
                 else if(a.charAt(i) < b.charAt(i)) return 1;
             }
@@ -112,7 +117,6 @@ public class User {
         } else {
 
             for(int i = 0; i < b.length(); i++) {   
-                System.out.println("Para " + a.charAt(i) + " ou " + b.charAt(i));
                 if(a.charAt(i) > b.charAt(i)) return 0;
                 else if(a.charAt(i) < b.charAt(i)) return 1;
             }
