@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-// GitHub link : 
+// GitHub link : https://github.com/Gustav0Furtad0/FinancieApp
 package App;
 
 import java.io.IOException;
