@@ -1,26 +1,27 @@
 package App;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-
-import ReadCSV.GetCSV;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import ReadJson.GetJson;
 
 public class acao {
-    private int quantidade;
-    private String nome;
-    private double valorCompra;
-    private LocalDate dataCompra;
+    protected final String nome;
+    protected final String empresa;
+    protected final double valor;
+    protected final Object volume;
 
-    public acao (String nome, double valorCompra, LocalDate dataCompra, int quantidade) {
+    public acao (String nome, double valor, String empresa, Object volume) {
         this.nome = nome;
-        this.valorCompra = valorCompra;
-        this.dataCompra = dataCompra;
-        this.quantidade = quantidade;
+        this.valor = valor;
+        this.empresa = empresa;
+        this.volume = volume;
     }
 
     public String toString() {
-        String str = this.nome + ", " + this.quantidade + ", " + this.valorCompra + ", " + this.dataCompra;
+        String str = "Stock: "+this.nome+", Price R$"+valor+" .";
         return str;
     }
 
@@ -28,19 +29,37 @@ public class acao {
         return this.nome;
     }
 
-    public Double val() {
-        return valorCompra * quantidade;
+    public double getValor() {
+        return this.valor;
     }
 
-    public void aumentaQtd(int qtd) {
-        this.quantidade += qtd;
+    public Object getVolume() {
+        return volume;
+    }
+    
+    public String getEmpresa() {
+        return empresa;
     }
 
-    public void puxaValores() throws IOException {
-        // "https://data.nasdaq.com/api/v3/datasets/WIKI/"+ this.nome + ".csv?order=asc"     ?limit=1 order=arc
-        List<String[]> valores = GetCSV.read("https://data.nasdaq.com/api/v3/datasets/WIKI/"+this.nome+".csv?order=asc");
-        for (int i = valores.size(); i > (valores.size()-2); i--) {
-            System.out.println(nome);
+    public static List<acao> puxaValores() throws IOException {
+        
+        List<acao> result = new ArrayList<acao>();
+
+        String response = GetJson.Get("https://brapi.dev/api/quote/list?sortBy=name&sortOrder=asc&limit=2000");
+        JSONObject stocks = new JSONObject(response);
+        JSONArray stocksArray = new JSONArray(stocks.getJSONArray("stocks"));
+
+        for (int i = 0 ; i < stocksArray.length(); i++) {
+            JSONObject album = stocksArray.getJSONObject(i);			
+            String stock = album.getString("stock");
+            String name = album.getString("name");
+            double valor = album.getDouble("close");
+            Object volume = album.get("volume");
+            result.add(new acao(stock, valor, name, volume));
         }
+
+        return result;
     }
+
+    
 }
