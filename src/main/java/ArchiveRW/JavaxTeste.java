@@ -76,7 +76,7 @@ public class JavaxTeste {
         JsonObject jsonObj = Json.createObjectBuilder()
             .add("username", map.get("username"))
 
-            .add("money", map.get("money"))
+            .add("money", Double.parseDouble(map.get("money")) )
 
             .add("actions", actionsBuild)
 
