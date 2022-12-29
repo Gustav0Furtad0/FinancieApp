@@ -61,5 +61,54 @@ public class acao {
         return result;
     }
 
-    
+    public static List<AcaoComprada> ordenaAcao(List<AcaoComprada> actions) {
+        if(actions.size() == 1) return actions;
+        String esse, frente;
+        Boolean ordem = false;
+        while (ordem == false) {
+            for(int i = 0; i < (actions.size()-1); i++) {
+                esse = actions.get(i).getNome();
+                frente = actions.get(i+1).getNome();
+                System.out.println("Comparando " + esse + " " + frente);
+                System.out.println("É oq? : " + esse + " " + (charMaior(esse, frente)));
+                if(charMaior(esse, frente) == 0) {
+                    AcaoComprada auxiliar = actions.get(i);
+                    actions.set(i, actions.get(i+1));
+                    actions.set(i+1, auxiliar);
+                    System.out.println("");
+                    break;
+                }
+                ordem = true;
+            }
+        }
+        return actions;
+    }
+
+    private static int charMaior(String a, String b) {
+        System.out.println("Tamanho de " + a + " é "+ a.length() + " e de " + b + " é " + b.length());
+        if (a.length() == b.length()){
+
+            for(int i = 0; i < a.length(); i++) {
+                if(a.charAt(i) > b.charAt(i)) return 0;
+                else if(a.charAt(i) < b.charAt(i)) return 1;
+            }
+            return -1;
+
+        } else if (a.length() < b.length()){
+
+            for(int i = 0; i < a.length(); i++) {   
+                if(a.charAt(i) > b.charAt(i)) return 0;
+                else if(a.charAt(i) < b.charAt(i)) return 1;
+            }
+            return -1;
+
+        } else {
+
+            for(int i = 0; i < b.length(); i++) {   
+                if(a.charAt(i) > b.charAt(i)) return 0;
+                else if(a.charAt(i) < b.charAt(i)) return 1;
+            }
+            return 1;
+        }
+    }
 }
