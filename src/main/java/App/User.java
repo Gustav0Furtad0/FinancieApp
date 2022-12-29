@@ -6,27 +6,30 @@ import java.util.*;
 public class User {
     private double money;
     private String username;
-    private List<acao> actions  = new ArrayList<acao>();
-    private String moeda;
+    private List<AcaoComprada> actions;
 
-    public User (String username) {
+    public User (String username, double money) {
         this.username = username;
-        this.moeda = "BRL";
-        this.money = 1000;
+        this.money = money;
+        this.actions = new ArrayList<AcaoComprada>();
     }
 
-    public void compraAcao(String acao, double valorCompra, LocalDate dataCompra, int quantidade) {
-        if ((this.money - valorCompra) < 0) {
+    public void setActions(List<AcaoComprada> actions) {
+        this.actions = actions;
+    }
+
+    public void compraAcao(acao acaoCompra, LocalDate dataCompra, int quantidade) {
+        if ((this.money - acaoCompra.getValor()) < 0) {
             System.out.println("Error: Não tem dinheiro para comprar a acao.");
         } else {
 
             if(this.actions.size() == 0) {
-                this.actions.add(new acao(acao, valorCompra, dataCompra, quantidade));
+                this.actions.add(new AcaoComprada(acaoCompra, dataCompra, quantidade));
             } else {
-                int verificaSeAcao = verificaAcao(acao);
+                int verificaSeAcao = verificaAcao(acaoCompra.getNome());
 
                 if (verificaSeAcao == -1) {
-                    this.actions.add(new acao(acao, valorCompra, dataCompra, quantidade));
+                    this.actions.add(new AcaoComprada(acaoCompra, dataCompra, quantidade));
                     System.out.println("Acao adicionada a carteira!");
                 } else {
                     this.actions.get(verificaSeAcao).aumentaQtd(quantidade);
@@ -34,37 +37,26 @@ public class User {
                 }
             }
            
-            this.money -= valorCompra * quantidade;
-            ordenaAcao();
+            this.money -= acaoCompra.getValor() * quantidade;
+            this.actions = acao.ordenaAcao(actions);
             System.out.println("Saldo resultante em conta: R$" + this.money + "\n\n");
         }
     }
 
-    public void acoesConta(){
+    public List<AcaoComprada> acoesConta(){
         double valorAcoes = 0;
         for(int i = 0; i < this.actions.size(); i++) {
             System.out.println(this.actions.get(i));
-            valorAcoes += this.actions.get(i).val();
+            valorAcoes += this.actions.get(i).getValor();
         }
         System.out.println("O valor de acoes que detém é R$" + valorAcoes + "." );
+        return this.actions;
     }
 
     public void exibirCarteira(){
-        System.out.println("Carteira de " + this.username() + "\n");
+        System.out.println("Carteira de " + this.getUsername() + "\n");
         this.acoesConta();
-        System.out.println("O saldo em dinheiro atual é : " + this.saldoConta() + "\n\n");
-    }
-
-    public String moedaConta() {
-        return this.moeda;
-    }
-
-    public String username() {
-        return this.username;
-    }
-
-    public Double saldoConta() {
-        return this.money;
+        System.out.println("O saldo em dinheiro atual é : " + this.getMoney() + "\n\n");
     }
 
     private int verificaAcao(String nome) {
@@ -74,53 +66,22 @@ public class User {
         return -1;
     }
 
-    private void ordenaAcao() {
-        if(this.actions.size() == 1) return;
-        String esse, frente;
-        Boolean ordem = false;
-        while (ordem == false) {
-            for(int i = 0; i < (this.actions.size()-1); i++) {
-                esse = this.actions.get(i).getNome();
-                frente = this.actions.get(i+1).getNome();
-                System.out.println("Comparando " + esse + " " + frente);
-                System.out.println("É oq? : " + esse + " " + (charMaior(esse, frente)));
-                if(charMaior(esse, frente) == 0) {
-                    acao auxiliar = this.actions.get(i);
-                    this.actions.set(i, this.actions.get(i+1));
-                    this.actions.set(i+1, auxiliar);
-                    System.out.println("");
-                    break;
-                }
-                ordem = true;
-            }
-        }
+    public Map<String, String> userToMap() {
+        Map<String, String> mapUser = new HashMap<>();
+        mapUser.put("username", this.username);
+        mapUser.put("money", Double.toString(this.money));
+        return mapUser;
     }
 
-    private int charMaior(String a, String b) {
-        System.out.println("Tamanho de " + a + " é "+ a.length() + " e de " + b + " é " + b.length());
-        if (a.length() == b.length()){
+    public String getUsername() {
+        return this.username;
+    }
 
-            for(int i = 0; i < a.length(); i++) {
-                if(a.charAt(i) > b.charAt(i)) return 0;
-                else if(a.charAt(i) < b.charAt(i)) return 1;
-            }
-            return -1;
+    public Double getMoney() {
+        return this.money;
+    }
 
-        } else if (a.length() < b.length()){
-
-            for(int i = 0; i < a.length(); i++) {   
-                if(a.charAt(i) > b.charAt(i)) return 0;
-                else if(a.charAt(i) < b.charAt(i)) return 1;
-            }
-            return -1;
-
-        } else {
-
-            for(int i = 0; i < b.length(); i++) {   
-                if(a.charAt(i) > b.charAt(i)) return 0;
-                else if(a.charAt(i) < b.charAt(i)) return 1;
-            }
-            return 1;
-        }
+    public List<AcaoComprada> getActions() {
+        return actions;
     }
 }
