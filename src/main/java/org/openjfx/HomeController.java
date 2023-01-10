@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import org.openjfx.ArchiveRW.JavaxTeste;
 import org.openjfx.back.User;
-import org.openjfx.back.Acao;
+import org.openjfx.back.AcaoListada;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +36,7 @@ public class HomeController implements Initializable {
 
     private Boolean buscaActive = false;
 
-    private List<Acao> acoesList;
+    private List<AcaoListada> acoesList;
 
     private User pessoa;
 
@@ -69,15 +69,15 @@ public class HomeController implements Initializable {
     private ObservableList<AcaoTab> montaTabelaBusca(String arg) {
         ObservableList<AcaoTab> acoes = null;
         acoes = FXCollections.observableArrayList();
-        for (Acao acaoIn : acoesList) {
+        for (AcaoListada acaoIn : acoesList) {
             if (acaoIn.getEmpresa().toLowerCase().contains(arg)) {
                 AcaoTab acaoT = new AcaoTab(
                     acaoIn,
                     acaoIn.getEmpresa(),
                     acaoIn.getNome(),
-                    Acao.FormatD(acaoIn.getValor()),
+                    AcaoListada.FormatD(acaoIn.getValor()),
                     acaoIn.getVolume().toString(),
-                    Acao.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))
+                    AcaoListada.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))
                 );
                 acoes.add(acaoT);
             }
@@ -154,7 +154,7 @@ public class HomeController implements Initializable {
         labelWel.setText("Bem vindo, " + pessoa.getUsername() + "!");        
 
         try {
-            this.acoesList = Acao.puxaValores();
+            this.acoesList = AcaoListada.puxaValores();
             pessoa.updateCarteira(acoesList);
         } catch (IOException e) {
             return;
@@ -197,15 +197,15 @@ public class HomeController implements Initializable {
         acoes = FXCollections.observableArrayList();
         int limiter = (index*10)+10;
         for (int ler = index*10; ler < limiter;  ler++) {
-            Acao acaoIn = acoesList.get(ler);
+            AcaoListada acaoIn = acoesList.get(ler);
 
             AcaoTab acaoT = new AcaoTab(
                 acaoIn,
                 acaoIn.getEmpresa(),
                 acaoIn.getNome(),
-                Acao.FormatD(acaoIn.getValor()),
+                AcaoListada.FormatD(acaoIn.getValor()),
                 acaoIn.getVolume().toString(),
-                (acaoIn.getVariacao().equals(null) ? "0%" : Acao.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))+"%")
+                (acaoIn.getVariacao().equals(null) ? "0%" : AcaoListada.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))+"%")
                 
             );
             acoes.add(acaoT);

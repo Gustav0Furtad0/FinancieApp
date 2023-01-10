@@ -21,7 +21,7 @@ public class User {
         this.actions = actions;
     }
 
-    public void compraAcao(Acao acaoCompra, LocalDate dataCompra, int quantidade) {
+    public void compraAcao(AcaoListada acaoCompra, LocalDate dataCompra, int quantidade) {
         if ((this.money - acaoCompra.getValor()) < 0) {
             System.out.println("Error: Não tem dinheiro para comprar a acao.");
         } else {
@@ -41,7 +41,7 @@ public class User {
             }
            
             this.money -= acaoCompra.getValor() * quantidade;
-            this.actions = Acao.ordenaAcao(actions);
+            this.actions = AcaoListada.ordenaAcao(actions);
             System.out.println("Saldo resultante em conta: R$" + this.money + "\n\n");
         }
     }
@@ -60,9 +60,9 @@ public class User {
         }
     }
 
-    public void updateCarteira(List<Acao> acoesList) {
+    public void updateCarteira(List<AcaoListada> acoesList) {
         for (AcaoComprada acaoC : actions) {
-            for (Acao acaoL : acoesList) {
+            for (AcaoListada acaoL : acoesList) {
                 if (acaoL.getNome().equals(acaoC.getNome())) {
                     acaoC.setValor(acaoL.getValor());
                 }

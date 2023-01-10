@@ -2,12 +2,12 @@ package org.openjfx.back;
 
 import java.time.LocalDate;
 
-public class AcaoComprada extends Acao {
+public class AcaoComprada extends AcaoListada {
     private int quantidade;
     private double valorCompra;
     private LocalDate dataCompra;
     
-    public AcaoComprada( Acao acaoCompra, LocalDate dataCompra, int quantidade)  {
+    public AcaoComprada( AcaoListada acaoCompra, LocalDate dataCompra, int quantidade)  {
         super(acaoCompra.getNome(), acaoCompra.getValor(), acaoCompra.getEmpresa(), 
         acaoCompra.getVolume(), acaoCompra.getVariacao());
         this.quantidade = quantidade;

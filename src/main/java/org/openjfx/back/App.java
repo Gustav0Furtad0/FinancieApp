@@ -18,7 +18,7 @@ public class App{
 
         Boolean arquivo = JavaxTeste.existe();
 
-        List<Acao> lista = Acao.puxaValores();  
+        List<AcaoListada> lista = AcaoListada.puxaValores();  
 
         teclado = new Scanner(System.in);
 
@@ -36,14 +36,14 @@ public class App{
         System.out.println("Bem vindo ao sistema " + pessoa.getUsername() + "!\n\n\n");
 
         String s;
-        int i = 1280, acao;
+        int i = 1280, stock;
         do {
             for (int ler = i; ler < i+10;  ler++) {
                 System.out.println(ler + ": " + lista.get(ler).getNome() + "   Valor: " + FormatD(lista.get(ler).getValor())
                 + " Var: " + (lista.get(ler).getVariacao().equals(null) ? "0" : lista.get(ler).getVariacao()) );
             }
 
-            System.out.println("Escolha uma ação para comprar ou navegar... [> próximas, < anteriores, N sair, <number> numero da acao]");
+            System.out.println("Escolha uma ação para comprar ou navegar... [> próximas, < anteriores, N sair, <number> numero da stock]");
             System.out.println("Ou digite C para exibir sua carteira");
 
             s = teclado.nextLine().toUpperCase();
@@ -56,9 +56,9 @@ public class App{
             else if (s != null && s.matches("[0-9]*")) {
                 System.out.println("Digite a quantidade de acoes que deseja comprar: ");
                 int quatidade = Integer.parseInt(teclado.nextLine());
-                acao = Integer.parseInt(s);
+                stock = Integer.parseInt(s);
                 LocalDate agora = LocalDate.now();
-                pessoa.compraAcao(lista.get(acao), agora, quatidade);
+                pessoa.compraAcao(lista.get(stock), agora, quatidade);
                 JavaxTeste.updateFileUser(pessoa);
 
             } else if (s.equals("C")) {

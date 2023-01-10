@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import org.openjfx.ArchiveRW.JavaxTeste;
 import org.openjfx.back.AcaoComprada;
 import org.openjfx.back.User;
-import org.openjfx.back.Acao;
+import org.openjfx.back.AcaoListada;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -118,12 +118,12 @@ public class CarteiraController implements Initializable {
                 acaoIn,
                 acaoIn.getEmpresa(),
                 acaoIn.getNome(),
-                Acao.FormatD(acaoIn.getValor()),
-                Acao.FormatD(acaoIn.getValorCompra()),
-                Acao.FormatD(acaoIn.getValor() - acaoIn.getValorCompra()),
+                AcaoListada.FormatD(acaoIn.getValor()),
+                AcaoListada.FormatD(acaoIn.getValorCompra()),
+                AcaoListada.FormatD(acaoIn.getValor() - acaoIn.getValorCompra()),
                 acaoIn.getDataCompra().toString(),
                 Integer.toString(acaoIn.getQuantidade()),
-                Acao.FormatD(acaoIn.getQuantidade() * acaoIn.getValor())
+                AcaoListada.FormatD(acaoIn.getQuantidade() * acaoIn.getValor())
             );
             acoes.add(acaoT);
         }
@@ -194,10 +194,10 @@ public class CarteiraController implements Initializable {
     private Label ganhosPerLabel;
     public void setInfo() {
         usernameLabel.setText(pessoa.getUsername());
-        saldoLabel.setText(Acao.FormatD(pessoa.getMoney()));
-        investidoLabel.setText("R$"+Acao.FormatD(pessoa.ativosCount()));
-        plLabel.setText("R$"+Acao.FormatD(pessoa.ativosCount() + pessoa.getMoney()));
-        ganhosLabel.setText("R$"+Acao.FormatD((pessoa.ativosCount() + pessoa.getMoney()) - 5000));
-        ganhosPerLabel.setText(Acao.FormatD((((pessoa.ativosCount() + pessoa.getMoney()) - 5000) * 100) / 5000));
+        saldoLabel.setText(AcaoListada.FormatD(pessoa.getMoney()));
+        investidoLabel.setText("R$"+AcaoListada.FormatD(pessoa.ativosCount()));
+        plLabel.setText("R$"+AcaoListada.FormatD(pessoa.ativosCount() + pessoa.getMoney()));
+        ganhosLabel.setText("R$"+AcaoListada.FormatD((pessoa.ativosCount() + pessoa.getMoney()) - 5000));
+        ganhosPerLabel.setText(AcaoListada.FormatD((((pessoa.ativosCount() + pessoa.getMoney()) - 5000) * 100) / 5000));
     }
 }
