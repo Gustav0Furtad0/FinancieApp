@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.front;
 
 import java.io.IOException;
 import java.net.URL;

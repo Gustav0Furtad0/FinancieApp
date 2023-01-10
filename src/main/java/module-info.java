@@ -1,10 +1,11 @@
 module full.openjfx {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
     requires org.json;
     requires javax.json;
 
-    opens org.openjfx to javafx.fxml;
-    exports org.openjfx;
+    opens org.openjfx.front to javafx.fxml;
+    exports org.openjfx.front;
     exports org.openjfx.back;
 }

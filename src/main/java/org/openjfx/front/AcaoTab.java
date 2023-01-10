@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.front;
 
 import org.openjfx.back.AcaoListada;
 
