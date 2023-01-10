@@ -22,7 +22,7 @@ import javax.json.JsonWriter;
 
 import org.openjfx.back.AcaoComprada;
 import org.openjfx.back.User;
-import org.openjfx.back.acao;
+import org.openjfx.back.Acao;
 
 
 
@@ -54,7 +54,7 @@ public class JavaxTeste {
                 LocalDate date =  LocalDate.parse(action.getString      ("dataCompra"));
                 actionsUser.add(
                     new AcaoComprada(
-                        new acao(
+                        new Acao(
                             action.getString("nome"),  
                             action.getJsonNumber("valor").doubleValue(),  
                             action.getString("empresa"), 

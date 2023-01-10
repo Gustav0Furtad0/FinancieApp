@@ -18,7 +18,7 @@ public class App{
 
         Boolean arquivo = JavaxTeste.existe();
 
-        List<acao> lista = acao.puxaValores();  
+        List<Acao> lista = Acao.puxaValores();  
 
         teclado = new Scanner(System.in);
 

@@ -8,24 +8,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openjfx.ReadJson.GetJson;
 
-public class acao {
+public class Acao implements Vendas {
     protected final String nome;
     protected final String empresa;
     protected double valor;
     protected final Object volume;
     protected final Object variacao;
 
-    public acao (String nome, double valor, String empresa, Object volume, Object variacao) {
+    public Acao (String nome, double valor, String empresa, Object volume, Object variacao) {
         this.nome = nome;
         this.valor = valor;
         this.empresa = empresa;
         this.volume = volume;
         this.variacao = variacao;
-    }
-
-    public String toString() {
-        String str = "Stock: "+this.nome+", Price R$"+valor+" .";
-        return str;
     }
 
     public Object getVariacao() {
@@ -48,9 +43,9 @@ public class acao {
         return empresa;
     }
 
-    public static List<acao> puxaValores() throws IOException {
+    public static List<Acao> puxaValores() throws IOException {
         
-        List<acao> result = new ArrayList<acao>();
+        List<Acao> result = new ArrayList<Acao>();
 
         String response = GetJson.Get("https://brapi.dev/api/quote/list?sortBy=name&sortOrder=asc&limit=2000");
         JSONObject stocks = new JSONObject(response);
@@ -63,7 +58,7 @@ public class acao {
             double valor = album.getDouble("close");
             Object volume = album.get("volume");
             Object variacao = album.get("change");
-            result.add(new acao(stock, valor, name, volume, variacao));
+            result.add(new Acao(stock, valor, name, volume, variacao));
         }
 
         return result;

@@ -1,6 +1,6 @@
 package org.openjfx;
 
-import org.openjfx.back.acao;
+import org.openjfx.back.Acao;
 
 public class AcaoTab {
     private final String empresa;
@@ -8,9 +8,9 @@ public class AcaoTab {
     private final String valor;
     private final String volume;
     private final String variacao;
-    private final acao aponta;
+    private final Acao aponta;
 
-    public AcaoTab(acao aponta, String empresa, String stock, String valor, String volume, String variacao) {
+    public AcaoTab(Acao aponta, String empresa, String stock, String valor, String volume, String variacao) {
         this.aponta = aponta;
         this.empresa = empresa;
         this.stock = stock;
@@ -39,7 +39,7 @@ public class AcaoTab {
         return volume;
     }
 
-    public acao getAponta() {
+    public Acao getAponta() {
         return aponta;
     }
 }

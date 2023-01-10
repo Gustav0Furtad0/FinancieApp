@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import org.openjfx.ArchiveRW.JavaxTeste;
-
 public class User {
     private double money;
     private String username;
@@ -23,7 +21,7 @@ public class User {
         this.actions = actions;
     }
 
-    public void compraAcao(acao acaoCompra, LocalDate dataCompra, int quantidade) {
+    public void compraAcao(Acao acaoCompra, LocalDate dataCompra, int quantidade) {
         if ((this.money - acaoCompra.getValor()) < 0) {
             System.out.println("Error: Não tem dinheiro para comprar a acao.");
         } else {
@@ -43,7 +41,7 @@ public class User {
             }
            
             this.money -= acaoCompra.getValor() * quantidade;
-            this.actions = acao.ordenaAcao(actions);
+            this.actions = Acao.ordenaAcao(actions);
             System.out.println("Saldo resultante em conta: R$" + this.money + "\n\n");
         }
     }
@@ -62,9 +60,9 @@ public class User {
         }
     }
 
-    public void updateCarteira(List<acao> acoesList) {
+    public void updateCarteira(List<Acao> acoesList) {
         for (AcaoComprada acaoC : actions) {
-            for (acao acaoL : acoesList) {
+            for (Acao acaoL : acoesList) {
                 if (acaoL.getNome().equals(acaoC.getNome())) {
                     acaoC.setValor(acaoL.getValor());
                 }

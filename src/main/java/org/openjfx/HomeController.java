@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 import org.openjfx.ArchiveRW.JavaxTeste;
 import org.openjfx.back.User;
-import org.openjfx.back.acao;
+import org.openjfx.back.Acao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +36,7 @@ public class HomeController implements Initializable {
 
     private Boolean buscaActive = false;
 
-    private List<acao> acoesList;
+    private List<Acao> acoesList;
 
     private User pessoa;
 
@@ -69,15 +69,15 @@ public class HomeController implements Initializable {
     private ObservableList<AcaoTab> montaTabelaBusca(String arg) {
         ObservableList<AcaoTab> acoes = null;
         acoes = FXCollections.observableArrayList();
-        for (acao acaoIn : acoesList) {
+        for (Acao acaoIn : acoesList) {
             if (acaoIn.getEmpresa().toLowerCase().contains(arg)) {
                 AcaoTab acaoT = new AcaoTab(
                     acaoIn,
                     acaoIn.getEmpresa(),
                     acaoIn.getNome(),
-                    acao.FormatD(acaoIn.getValor()),
+                    Acao.FormatD(acaoIn.getValor()),
                     acaoIn.getVolume().toString(),
-                    acao.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))
+                    Acao.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))
                 );
                 acoes.add(acaoT);
             }
@@ -154,7 +154,7 @@ public class HomeController implements Initializable {
         labelWel.setText("Bem vindo, " + pessoa.getUsername() + "!");        
 
         try {
-            this.acoesList = acao.puxaValores();
+            this.acoesList = Acao.puxaValores();
             pessoa.updateCarteira(acoesList);
         } catch (IOException e) {
             return;
@@ -197,15 +197,15 @@ public class HomeController implements Initializable {
         acoes = FXCollections.observableArrayList();
         int limiter = (index*10)+10;
         for (int ler = index*10; ler < limiter;  ler++) {
-            acao acaoIn = acoesList.get(ler);
+            Acao acaoIn = acoesList.get(ler);
 
             AcaoTab acaoT = new AcaoTab(
                 acaoIn,
                 acaoIn.getEmpresa(),
                 acaoIn.getNome(),
-                acao.FormatD(acaoIn.getValor()),
+                Acao.FormatD(acaoIn.getValor()),
                 acaoIn.getVolume().toString(),
-                (acaoIn.getVariacao().equals(null) ? "0%" : acao.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))+"%")
+                (acaoIn.getVariacao().equals(null) ? "0%" : Acao.FormatD(Double.parseDouble(acaoIn.getVariacao().toString()))+"%")
                 
             );
             acoes.add(acaoT);
