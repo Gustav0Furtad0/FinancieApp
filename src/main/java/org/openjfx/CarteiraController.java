@@ -1,4 +1,4 @@
-package org.openjfx.front;
+package org.openjfx;
 
 import java.io.IOException;
 import java.net.URL;
@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import org.openjfx.ArchiveRW.JavaxTeste;
 import org.openjfx.back.AcaoComprada;
 import org.openjfx.back.User;
+import org.openjfx.front.AcaoCompTab;
 import org.openjfx.back.AcaoListada;
 
 import javafx.collections.FXCollections;

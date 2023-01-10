@@ -1,4 +1,4 @@
-package org.openjfx.front;
+package org.openjfx;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;

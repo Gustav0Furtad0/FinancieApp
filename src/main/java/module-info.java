@@ -4,7 +4,10 @@ module full.openjfx {
     requires org.json;
     requires javax.json;
 
-    opens org.openjfx.front to javafx.fxml;
-    exports org.openjfx.front;
+    opens org.openjfx to javafx.fxml;
+    exports org.openjfx;
     exports org.openjfx.back;
+    exports org.openjfx.front;
+    exports org.openjfx.ReadJson;
+    exports org.openjfx.ArchiveRW;
 }

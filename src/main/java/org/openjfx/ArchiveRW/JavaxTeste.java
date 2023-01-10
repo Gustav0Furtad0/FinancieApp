@@ -22,7 +22,6 @@ import javax.json.JsonWriter;
 
 import org.openjfx.back.AcaoComprada;
 import org.openjfx.back.User;
-import org.openjfx.back.AcaoListada;
 
 
 
@@ -54,13 +53,9 @@ public class JavaxTeste {
                 LocalDate date =  LocalDate.parse(action.getString      ("dataCompra"));
                 actionsUser.add(
                     new AcaoComprada(
-                        new AcaoListada(
-                            action.getString("nome"),  
-                            action.getJsonNumber("valor").doubleValue(),  
-                            action.getString("empresa"), 
-                            action.getJsonNumber("volume").doubleValue(),
-                            action.getJsonNumber("variacao").doubleValue()
-                        ),
+                        action.getString("nome"),  
+                        action.getJsonNumber("valor").doubleValue(),  
+                        action.getString("empresa"), 
                         date, 
                         action.getInt("quantidade")
                     )
@@ -111,8 +106,6 @@ public class JavaxTeste {
                     .add("quantidade", action.getQuantidade())
                     .add("valorCompra", action.getValorCompra())
                     .add("dataCompra", action.getDataCompra().toString())
-                    .add("volume", Double.parseDouble(action.getVolume().toString()))
-                    .add("variacao", Double.parseDouble(action.getVariacao().toString()))
                     .build()
                 );
             }

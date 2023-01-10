@@ -27,12 +27,12 @@ public class User {
         } else {
 
             if(this.actions.size() == 0) {
-                this.actions.add(new AcaoComprada(acaoCompra, dataCompra, quantidade));
+                this.actions.add(new AcaoComprada(acaoCompra.getNome(), acaoCompra.getValor(), acaoCompra.getEmpresa(), dataCompra, quantidade));
             } else {
                 int verificaSeAcao = verificaAcao(acaoCompra.getNome());
 
                 if (verificaSeAcao == -1) {
-                    this.actions.add(new AcaoComprada(acaoCompra, dataCompra, quantidade));
+                    this.actions.add(new AcaoComprada(acaoCompra.getNome(), acaoCompra.getValor(), acaoCompra.getEmpresa(), dataCompra, quantidade));
                     System.out.println("Acao adicionada a carteira!");
                 } else {
                     this.actions.get(verificaSeAcao).aumentaQtd(quantidade);
