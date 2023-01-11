@@ -11,7 +11,7 @@ import java.util.Map;
  * Pedro Andrade Pereira Leão , 202035008.
  */
 
-public class User {
+public class User implements Vendas {
     private double money;
     private String username;
     private List<AcaoComprada> actions;
