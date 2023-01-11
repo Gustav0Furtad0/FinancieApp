@@ -8,6 +8,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openjfx.ReadJson.GetJson;
 
+/*Alunos:
+ * Gustavo de Jesus Furtado ,   202176024;
+ * Pedro Andrade Pereira Leão , 202035008.
+ */
+
 public abstract class Acao {
     protected final String nome;
     protected final String empresa;

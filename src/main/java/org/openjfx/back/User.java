@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*Alunos:
+ * Gustavo de Jesus Furtado ,   202176024;
+ * Pedro Andrade Pereira Leão , 202035008.
+ */
+
 public class User {
     private double money;
     private String username;

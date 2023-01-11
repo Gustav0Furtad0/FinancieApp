@@ -23,7 +23,10 @@ import javax.json.JsonWriter;
 import org.openjfx.back.AcaoComprada;
 import org.openjfx.back.User;
 
-
+/*Alunos:
+ * Gustavo de Jesus Furtado ,   202176024;
+ * Pedro Andrade Pereira Leão , 202035008.
+ */
 
 public class JavaxTeste {
 

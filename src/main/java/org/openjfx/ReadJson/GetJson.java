@@ -7,6 +7,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/*Alunos:
+ * Gustavo de Jesus Furtado ,   202176024;
+ * Pedro Andrade Pereira Leão , 202035008.
+ */
+
 public class GetJson {
     
 	private static HttpURLConnection conn;

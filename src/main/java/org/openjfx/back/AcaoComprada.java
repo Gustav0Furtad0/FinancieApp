@@ -2,6 +2,11 @@ package org.openjfx.back;
 
 import java.time.LocalDate;
 
+/*Alunos:
+ * Gustavo de Jesus Furtado ,   202176024;
+ * Pedro Andrade Pereira Leão , 202035008.
+ */
+
 public class AcaoComprada extends Acao {
     private int quantidade;
     private double valorCompra;

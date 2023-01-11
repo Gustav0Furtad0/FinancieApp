@@ -29,6 +29,11 @@ import javafx.scene.input.MouseEvent;
 // import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+/*Alunos:
+ * Gustavo de Jesus Furtado ,   202176024;
+ * Pedro Andrade Pereira Leão , 202035008.
+ */
+
 public class CarteiraController implements Initializable {
 
     User pessoa;

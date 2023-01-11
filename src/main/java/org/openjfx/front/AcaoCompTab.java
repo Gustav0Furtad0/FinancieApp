@@ -2,6 +2,11 @@ package org.openjfx.front;
 
 import org.openjfx.back.AcaoComprada;
 
+/*Alunos:
+ * Gustavo de Jesus Furtado ,   202176024;
+ * Pedro Andrade Pereira Leão , 202035008.
+ */
+
 public class AcaoCompTab {
     private final String empresa;
     private final String stock;
